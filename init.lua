@@ -6,8 +6,23 @@ if not vim.loop.fs_stat(lazypath) then
     })
 end
 vim.opt.rtp:prepend(lazypath)
-
+vim.env.CC = "gcc"
 require("lazy").setup({
+    {
+        "nvim-tree/nvim-tree.lua",
+        dependencies = { "nvim-tree/nvim-web-devicons"},
+        config = function ()
+            require("nvim-tree").setup({
+                sync_root_with_cwd = true,
+                respect_buf_cwd = true,
+                update_focused_file = {
+                    enable = true,
+                    update_root = true,  -- will change tree root to match opened file
+                }
+            })
+        end
+    }
+    ,
 
     {
         "nvim-treesitter/nvim-treesitter",
@@ -84,7 +99,7 @@ require("lazy").setup({
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({{name = "path"}},
-                                             {{name = "cmdline"}})
+                    {{name = "cmdline"}})
             })
         end
     }, -- mason
@@ -128,9 +143,9 @@ require("lazy").setup({
     }
 
 }, {
-    -- options
-    rocks = {enabled = true, hererocks = false}
-})
+        -- options
+        rocks = {enabled = true, hererocks = false}
+    })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
