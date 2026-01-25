@@ -10,21 +10,18 @@ vim.env.CC = "gcc"
 require("lazy").setup({
     {
         "nvim-tree/nvim-tree.lua",
-        dependencies = { "nvim-tree/nvim-web-devicons"},
-        config = function ()
+        dependencies = {"nvim-tree/nvim-web-devicons"},
+        config = function()
             require("nvim-tree").setup({
                 sync_root_with_cwd = true,
                 respect_buf_cwd = true,
                 update_focused_file = {
                     enable = true,
-                    update_root = true,  -- will change tree root to match opened file
+                    update_root = true -- will change tree root to match opened file
                 }
             })
         end
-    }
-    ,
-
-    {
+    }, {
         "nvim-treesitter/nvim-treesitter",
         branch = 'master',
         lazy = false,
@@ -99,7 +96,7 @@ require("lazy").setup({
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({{name = "path"}},
-                    {{name = "cmdline"}})
+                                             {{name = "cmdline"}})
             })
         end
     }, -- mason
@@ -127,25 +124,34 @@ require("lazy").setup({
     {
         "neovim/nvim-lspconfig",
         config = function()
-
             local capabilities = require("cmp_nvim_lsp").default_capabilities()
-            local lspconfig = require("lspconfig")
 
             local servers = {
-                "lua_ls", "ts_ls", "eslint", "html", "cssls", "tailwindcss",
-                "jsonls"
-
+                lua_ls = {
+                    settings = {Lua = {diagnostics = {globals = {"vim"}}}}
+                },
+                ts_ls = {},
+                eslint = {},
+                html = {},
+                cssls = {},
+                tailwindcss = {},
+                jsonls = {},
+                rust_analyzer = {}
             }
-            for _, server in ipairs(servers) do
-                lspconfig[server].setup({capabilities = capabilities})
+
+            for name, config in pairs(servers) do
+                vim.lsp.config(name, vim.tbl_extend("force", {
+                    capabilities = capabilities
+                }, config))
+                vim.lsp.enable({name})
             end
         end
     }
 
 }, {
-        -- options
-        rocks = {enabled = true, hererocks = false}
-    })
+    -- options
+    rocks = {enabled = true, hererocks = false}
+})
 
 vim.opt.number = true
 vim.opt.relativenumber = true
