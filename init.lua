@@ -53,6 +53,7 @@ require("lazy").setup({
         end
     }, {
         "catppuccin/nvim",
+        lazy = "true",
         name = "catppuccin",
         priority = 1000,
         config = function()
@@ -66,7 +67,6 @@ require("lazy").setup({
                     native_lsp = {enabled = true}
                 }
             })
-            vim.cmd.colorscheme("catppuccin")
         end
     },  {
         "Tsuzat/NeoSolarized.nvim",
