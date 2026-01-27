@@ -53,7 +53,7 @@ require("lazy").setup({
         end
     }, {
         "catppuccin/nvim",
-        lazy = "true",
+        lazy = false,
         name = "catppuccin",
         priority = 1000,
         config = function()
@@ -67,13 +67,14 @@ require("lazy").setup({
                     native_lsp = {enabled = true}
                 }
             })
+            
+            vim.cmd.colorscheme("catppuccin")
         end
     },  {
         "Tsuzat/NeoSolarized.nvim",
-        lazy = false,
+        lazy = true,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme("NeoSolarized")
         end,
     },{
         "hrsh7th/nvim-cmp",
@@ -174,10 +175,13 @@ require("lazy").setup({
 
 vim.opt.number = true
 vim.opt.relativenumber = true
+
+-- Indentation (4 spaces, fully consistent)
 vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
-
