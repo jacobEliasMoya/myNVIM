@@ -22,6 +22,18 @@ require("lazy").setup({
             })
         end
     }, {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "NeoSolarized",
+                    section_separators = { left = "", right = "" },
+                    component_separators = { left = "", right = "" },
+                },
+            })
+        end,
+    },{
         "nvim-treesitter/nvim-treesitter",
         branch = 'master',
         lazy = false,
@@ -56,7 +68,14 @@ require("lazy").setup({
             })
             vim.cmd.colorscheme("catppuccin")
         end
-    }, {
+    },  {
+        "Tsuzat/NeoSolarized.nvim",
+        lazy = false,
+        priority = 1000,
+        config = function()
+            vim.cmd.colorscheme("NeoSolarized")
+        end,
+    },{
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-buffer", "hrsh7th/cmp-path",
@@ -96,7 +115,7 @@ require("lazy").setup({
             cmp.setup.cmdline(":", {
                 mapping = cmp.mapping.preset.cmdline(),
                 sources = cmp.config.sources({{name = "path"}},
-                                             {{name = "cmdline"}})
+                    {{name = "cmdline"}})
             })
         end
     }, -- mason
@@ -149,9 +168,9 @@ require("lazy").setup({
     }
 
 }, {
-    -- options
-    rocks = {enabled = true, hererocks = false}
-})
+        -- options
+        rocks = {enabled = true, hererocks = false}
+    })
 
 vim.opt.number = true
 vim.opt.relativenumber = true
