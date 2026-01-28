@@ -173,6 +173,9 @@ require("lazy").setup({
         rocks = {enabled = true, hererocks = false}
     })
 
+vim.g.mapleader = " " 
+vim.g.maplocalleader = " " 
+
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -185,3 +188,7 @@ vim.opt.expandtab = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {desc = "Find Files"})
+
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", {desc = "Find Text"})
+
