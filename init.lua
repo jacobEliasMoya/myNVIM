@@ -27,7 +27,7 @@ require("lazy").setup({
         config = function()
             require("lualine").setup({
                 options = {
-                    theme = "NeoSolarized",
+                    theme = "catppuccin",
                     section_separators = { left = "", right = "" },
                     component_separators = { left = "", right = "" },
                 },
