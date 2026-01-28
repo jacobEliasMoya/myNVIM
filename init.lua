@@ -189,6 +189,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.cursorline = true
 vim.opt.termguicolors = true
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {desc = "Find Files"})
-
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", {desc = "Find Text"})
+vim.keymap.set("n", "<leader>tt", "<cmd>NvimTreeToggle<CR>", {desc = "Toggle treesitter"})
+
 
