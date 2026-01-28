@@ -27,7 +27,7 @@ require("lazy").setup({
         config = function()
             require("lualine").setup({
                 options = {
-                    theme = "catppuccin",
+                    theme = "tokyonight",
                     section_separators = { left = "", right = "" },
                     component_separators = { left = "", right = "" },
                 },
@@ -67,15 +67,27 @@ require("lazy").setup({
                     native_lsp = {enabled = true}
                 }
             })
-            
-            vim.cmd.colorscheme("catppuccin")
+
         end
-    },  {
+    },{
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {
+            style = "storm",
+            transparent = true,
+        },
+    }  ,{
         "Tsuzat/NeoSolarized.nvim",
         lazy = true,
         priority = 1000,
         config = function()
         end,
+    },{
+        "folke/tokyonight.nvim",
+        lazy = false, -- load immediately
+        priority = 1000, -- load before other UI plugins
+        opts = {}, -- safe default
     },{
         "hrsh7th/nvim-cmp",
         dependencies = {
@@ -192,4 +204,5 @@ vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<CR>", {desc = "Find
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", {desc = "Find Text"})
 vim.keymap.set("n", "<leader>tt", "<cmd>NvimTreeToggle<CR>", {desc = "Toggle treesitter"})
 
+vim.cmd.colorscheme("tokyonight")
 
