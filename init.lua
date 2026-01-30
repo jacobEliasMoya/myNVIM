@@ -9,6 +9,22 @@ vim.opt.rtp:prepend(lazypath)
 vim.env.CC = "gcc"
 require("lazy").setup({
     {
+        "akinsho/bufferline.nvim",
+        version = "*",
+        dependencies = "nvim-tree/nvim-web-devicons",
+        config = function()
+            require("bufferline").setup({
+                options = {
+                    diagnostics = "nvim_lsp",
+                    separator_style = "slant",
+                    show_buffer_close_icons = false,
+                    show_close_icon = false,
+                    always_show_bufferline = true,
+                },
+            })
+        end,
+    },
+    {
         "stevearc/conform.nvim",
         event = "BufWritePre",
         opts = { format_on_save = { lsp_fallback = true }, }
@@ -21,7 +37,7 @@ require("lazy").setup({
             respect_buf_cwd = true,
             update_focused_file = {
                 enable = true,
-                update_root = true     -- will change tree root to match opened file
+                update_root = true -- will change tree root to match opened file
             }
         })
     end
@@ -88,9 +104,9 @@ require("lazy").setup({
     end,
 }, {
     "folke/tokyonight.nvim",
-    lazy = false,        -- load immediately
-    priority = 1000,     -- load before other UI plugins
-    opts = {},           -- safe default
+    lazy = false,    -- load immediately
+    priority = 1000, -- load before other UI plugins
+    opts = {},       -- safe default
 }, {
     "hrsh7th/nvim-cmp",
     dependencies = {
@@ -134,7 +150,7 @@ require("lazy").setup({
                 { { name = "cmdline" } })
         })
     end
-},     -- mason
+}, -- mason
     {
         "williamboman/mason.nvim",
         config = function() require("mason").setup() end
@@ -150,12 +166,12 @@ require("lazy").setup({
 
         })
     end
-},     -- telescope
+}, -- telescope
     {
         "nvim-telescope/telescope.nvim",
         dependencies = { "nvim-lua/plenary.nvim" }, -- Required by Telescope
         config = function() require("telescope").setup() end
-    },                                            -- lsp support
+    },                                              -- lsp support
     {
         "neovim/nvim-lspconfig",
         config = function()
