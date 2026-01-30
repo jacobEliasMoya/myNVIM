@@ -98,7 +98,6 @@ require("lazy").setup({
           "tsx",
           "html",
           "css",
-          "scss",
           "json",
           "yaml",
 
