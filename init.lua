@@ -8,22 +8,74 @@ end
 vim.opt.rtp:prepend(lazypath)
 vim.env.CC = "gcc"
 require("lazy").setup({
+
+
+
   {
-    "akinsho/bufferline.nvim",
-    version = "*",
-    dependencies = "nvim-tree/nvim-web-devicons",
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
     config = function()
-      require("bufferline").setup({
-        options = {
-          diagnostics = "nvim_lsp",
-          separator_style = "slant",
-          show_buffer_close_icons = false,
-          show_close_icon = false,
-          always_show_bufferline = true,
+      require('dashboard').setup({
+        theme = 'doom', -- optional but fits the vibe
+        config = {
+          header = {
+
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "███╗   ██╗███████╗██████╗ ██████╗      ████████╗██╗███╗   ███╗███████╗",
+            "████╗  ██║██╔════╝██╔══██╗██╔══██╗     ╚══██╔══╝██║████╗ ████║██╔════╝",
+            "██╔██╗ ██║█████╗  ██████╔╝██║  ██║        ██║   ██║██╔████╔██║█████╗  ",
+            "██║╚██╗██║██╔══╝  ██╔══██╗██║  ██║        ██║   ██║██║╚██╔╝██║██╔══╝  ",
+            "██║ ╚████║███████╗██║  ██║██████╔╝        ██║   ██║██║ ╚═╝ ██║███████╗",
+            "╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═════╝         ╚═╝   ╚═╝╚═╝     ╚═╝╚══════╝",
+            "",
+            "______________________________________________________________________",
+            "",
+            "Do. Or do not. There is no try. - Master Yoda ",
+            "______________________________________________________________________",
+
+            "",
+            "",
+          },
+          center =
+          {
+            { desc = "🔍 Look For Some Files", key = "f", action = "Telescope find_files" },
+            { desc = "📜 Check Out Your Recent Files ", key = "r", action = "Telescope oldfiles" },
+            { desc = "⚙️ Tinker With Your Setup", key = "c", action = "edit ~/AppData/Local/nvim/init.lua" },
+            { desc = "🚪 Made a Wrong Turn, Go back", key = "q", action = "qa" },
+          },
+          footer = {
+            "______________________________________________________________________",
+            "",
+            "Anything worth doing is worth overdoing. - That one guy",
+          }
         },
       })
     end,
-  },
+  }
+  , {
+  "akinsho/bufferline.nvim",
+  version = "*",
+  dependencies = "nvim-tree/nvim-web-devicons",
+  config = function()
+    require("bufferline").setup({
+      options = {
+        diagnostics = "nvim_lsp",
+        separator_style = "slant",
+        show_buffer_close_icons = false,
+        show_close_icon = false,
+        always_show_bufferline = true,
+      },
+    })
+  end,
+},
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
@@ -40,7 +92,7 @@ require("lazy").setup({
       respect_buf_cwd = true,
       update_focused_file = {
         enable = true,
-        update_root = true         -- will change tree root to match opened file
+        update_root = true -- will change tree root to match opened file
       }
     })
   end
@@ -107,9 +159,9 @@ require("lazy").setup({
   end,
 }, {
   "folke/tokyonight.nvim",
-  lazy = false,      -- load immediately
-  priority = 1000,   -- load before other UI plugins
-  opts = {},         -- safe default
+  lazy = false,    -- load immediately
+  priority = 1000, -- load before other UI plugins
+  opts = {},       -- safe default
 }, {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -172,9 +224,9 @@ require("lazy").setup({
 }, -- telescope
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },     -- Required by Telescope
+    dependencies = { "nvim-lua/plenary.nvim" }, -- Required by Telescope
     config = function() require("telescope").setup() end
-  },                                                -- lsp support
+  },                                            -- lsp support
   {
     "neovim/nvim-lspconfig",
     config = function()
