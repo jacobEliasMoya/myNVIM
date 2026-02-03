@@ -60,26 +60,23 @@ require("lazy").setup({
         -- Configuration here, or leave empty to use defaults
       })
     end
-  }, {
-  'mrcjkb/rustaceanvim',
-  version = '^7', -- Recommended
-  lazy = false,   -- This plugin is already lazy
-}, {
-  "akinsho/bufferline.nvim",
-  version = "*",
-  dependencies = "nvim-tree/nvim-web-devicons",
-  config = function()
-    require("bufferline").setup({
-      options = {
-        diagnostics = "nvim_lsp",
-        separator_style = "slant",
-        show_buffer_close_icons = false,
-        show_close_icon = false,
-        always_show_bufferline = true,
-      },
-    })
-  end,
-},
+  },
+  {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+    config = function()
+      require("bufferline").setup({
+        options = {
+          diagnostics = "nvim_lsp",
+          separator_style = "slant",
+          show_buffer_close_icons = false,
+          show_close_icon = false,
+          always_show_bufferline = true,
+        },
+      })
+    end,
+  },
   {
     "stevearc/conform.nvim",
     event = "BufWritePre",
