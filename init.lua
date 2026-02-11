@@ -103,7 +103,7 @@ require("lazy").setup({
   config = function()
     require("lualine").setup({
       options = {
-        theme = "tokyonight",
+        theme = "gruvbox",
         section_separators = { left = "", right = "" },
         component_separators = { left = "", right = "" },
       },
@@ -150,7 +150,6 @@ require("lazy").setup({
   priority = 1000,
   opts = {
     style = "storm",
-    transparent = true,
   },
 }, {
   "Tsuzat/NeoSolarized.nvim",
@@ -159,6 +158,16 @@ require("lazy").setup({
   config = function()
   end,
 }, {
+  {
+    "ellisonleao/gruvbox.nvim",
+    priority = 1000,
+    config = function()
+      require("gruvbox").setup({
+        contrast = "hard",
+      })
+      vim.cmd.colorscheme("gruvbox")
+    end
+  },
   "folke/tokyonight.nvim",
   lazy = false,    -- load immediately
   priority = 1000, -- load before other UI plugins
@@ -281,4 +290,4 @@ vim.keymap.set("n", "<leader>tt", "<cmd>NvimTreeToggle<CR>", { desc = "Toggle tr
 vim.keymap.set("n", "<leader>bb", "<cmd>BufferLineCyclePrev<CR>", { desc = "Previous buffer" })
 vim.keymap.set("n", "<leader>bm", "<cmd>BufferLineCycleNext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>bd", "<cmd>bdelete<CR>", { desc = "Next buffer" })
-vim.cmd.colorscheme("tokyonight")
+vim.cmd.colorscheme("gruvbox")
