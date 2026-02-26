@@ -87,7 +87,7 @@ require("lazy").setup({
   config = function()
     require("nvim-tree").setup({
       view = {
-        side = "right",
+        side = "left",
       },
       sync_root_with_cwd = true,
       respect_buf_cwd = true,
